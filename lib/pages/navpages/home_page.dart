@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app_flutter/constants/app_colors.dart';
 import 'package:travel_app_flutter/widgets/app_large_text.dart';
+import 'package:travel_app_flutter/widgets/app_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,81 +12,168 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  var images = {
+    'Balloning.jpg': 'Balloning',
+    'Hiking.jpg': 'Hiking',
+    'Kayaking.jpg': 'Kayaking',
+    'Snorkling.jpeg': 'Snorkling',
+  };
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 70, left: 20),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.menu,
-                  size: 30,
-                  color: Colors.black54,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 70, left: 20),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.menu,
+                    size: 30,
+                    color: Colors.black54,
+                  ),
+                  Spacer(),
+                  Container(
+                    margin: EdgeInsets.only(right: 20),
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(10)),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Container(
+                margin: EdgeInsets.only(left: 20),
+                child: AppLargeText(text: 'Discover')),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: TabBar(
+                    controller: _tabController,
+                    isScrollable: true,
+                    overlayColor: MaterialStatePropertyAll(Colors.transparent),
+                    labelPadding: EdgeInsets.only(left: 20, right: 20),
+                    padding: EdgeInsets.all(0),
+                    tabAlignment: TabAlignment.start,
+                    unselectedLabelColor: Colors.grey,
+                    labelColor: Colors.black,
+                    indicator:
+                        CircleIndicator(width: 4, color: AppColors.mainColor),
+                    dividerHeight: 0,
+                    tabs: [
+                      Tab(
+                        text: 'Places',
+                      ),
+                      Tab(
+                        text: 'Inspiration',
+                      ),
+                      Tab(
+                        text: 'Emotions',
+                      ),
+                    ]),
+              ),
+            ),
+            Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.only(left: 20),
+              height: 300,
+              child: TabBarView(controller: _tabController, children: [
+                ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (_, index) {
+                    return Container(
+                      margin: EdgeInsets.only(right: 15, top: 10),
+                      height: 300,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey.withOpacity(0.3),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                'assets/images/welcome_one.jpg',
+                              ),
+                              fit: BoxFit.cover)),
+                    );
+                  },
                 ),
-                Spacer(),
-                Container(
-                  margin: EdgeInsets.only(right: 20),
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(10)),
-                )
-              ],
+                Text('There'),
+                Text('Bye'),
+              ]),
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Container(
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppLargeText(
+                    text: 'Explore more',
+                    size: 22,
+                  ),
+                  AppText(
+                    text: 'See all',
+                    color: AppColors.textColor1,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 120,
               margin: EdgeInsets.only(left: 20),
-              child: AppLargeText(text: 'Discover')),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: TabBar(
-                  controller: _tabController,
-                  isScrollable: true,
-                  overlayColor: MaterialStatePropertyAll(Colors.transparent),
-                  labelPadding: EdgeInsets.only(left: 20, right: 20),
-                  padding: EdgeInsets.all(0),
-                  tabAlignment: TabAlignment.start,
-                  unselectedLabelColor: Colors.grey,
-                  labelColor: Colors.black,
-                  indicator:
-                      CircleIndicator(width: 4, color: AppColors.mainColor),
-                  dividerHeight: 0,
-                  tabs: [
-                    Tab(
-                      text: 'Places',
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                itemBuilder: (_, index) {
+                  return Container(
+                    margin: EdgeInsets.only(right: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.grey.withOpacity(0.3),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                    'assets/images/' +
+                                        images.keys.elementAt(index),
+                                  ),
+                                  fit: BoxFit.cover)),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        AppText(
+                          text: images.values.elementAt(index),
+                          color: AppColors.textColor2,
+                        )
+                      ],
                     ),
-                    Tab(
-                      text: 'Inspiration',
-                    ),
-                    Tab(
-                      text: 'Emotions',
-                    ),
-                  ]),
-            ),
-          ),
-          Container(
-            width: double.maxFinite,
-            height: 300,
-            child: TabBarView(controller: _tabController, children: [
-              Text('Hi'),
-              Text('There'),
-              Text('Bye'),
-            ]),
-          )
-        ],
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
