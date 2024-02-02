@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_app_flutter/pages/home_page.dart';
 import 'package:travel_app_flutter/pages/navpages/bar_item_page.dart';
-import 'package:travel_app_flutter/pages/navpages/home_page.dart';
+
 import 'package:travel_app_flutter/pages/navpages/my_page.dart';
 import 'package:travel_app_flutter/pages/navpages/search_page.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app_flutter/pages/detail_page.dart';
 import 'package:travel_app_flutter/pages/navpages/main_page.dart';
 import 'package:travel_app_flutter/pages/welcome_page.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: DetailPage(),
     );
   }
 }
