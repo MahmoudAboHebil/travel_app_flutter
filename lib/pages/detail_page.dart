@@ -1,11 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app_flutter/constants/app_colors.dart';
+import 'package:travel_app_flutter/widgets/app_button.dart';
 import 'package:travel_app_flutter/widgets/app_large_text.dart';
 import 'package:travel_app_flutter/widgets/app_text.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
   int goldenStars = 4;
+
+  int selectedIndex = -1;
+
   Color getStarColor(int index, int goldenStars) {
     return (index < goldenStars) ? AppColors.startColor : AppColors.textColor2;
   }
@@ -123,6 +132,50 @@ class DetailPage extends StatelessWidget {
                           color: AppColors.textColor2,
                         )
                       ],
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    AppLargeText(
+                      text: 'People',
+                      color: Colors.black.withOpacity(0.8),
+                      size: 20,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    AppText(
+                      text: 'Number of people in your group',
+                      color: AppColors.mainTextColor,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Wrap(
+                      children: List.generate(5, (index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: AppButton(
+                              backgroundColor: selectedIndex == index
+                                  ? Colors.black
+                                  : AppColors.buttonBackground,
+                              borderColor: selectedIndex == index
+                                  ? Colors.black
+                                  : AppColors.buttonBackground,
+                              color: selectedIndex == index
+                                  ? Colors.white
+                                  : Colors.black,
+                              text: (index + 1).toString(),
+                            ),
+                          ),
+                        );
+                      }),
                     )
                   ],
                 ),
