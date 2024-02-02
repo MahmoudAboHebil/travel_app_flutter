@@ -4,6 +4,7 @@ import 'package:travel_app_flutter/constants/app_colors.dart';
 import 'package:travel_app_flutter/widgets/app_button.dart';
 import 'package:travel_app_flutter/widgets/app_large_text.dart';
 import 'package:travel_app_flutter/widgets/app_text.dart';
+import 'package:travel_app_flutter/widgets/responsive_button.dart';
 
 class DetailPage extends StatefulWidget {
   @override
@@ -176,9 +177,48 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                         );
                       }),
-                    )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    AppLargeText(
+                      text: 'Description',
+                      color: Colors.black.withOpacity(0.8),
+                      size: 20,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    AppText(
+                      text:
+                          'You must go for a travel. Traveling helps get rid of pressure. Go to the mountains to see the nature.',
+                      color: AppColors.mainTextColor,
+                    ),
                   ],
                 ),
+              ),
+            ),
+            Positioned(
+              bottom: 20,
+              left: 20,
+              right: 20,
+              child: Row(
+                children: [
+                  AppButton(
+                    size: 60,
+                    backgroundColor: Colors.white,
+                    borderColor: AppColors.textColor1,
+                    color: AppColors.textColor1,
+                    isIcon: true,
+                    icon: Icons.favorite_border,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ResponsiveButton(
+                    isResponsive: true,
+                  )
+                ],
               ),
             ),
           ],
