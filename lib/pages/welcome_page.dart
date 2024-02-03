@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app_flutter/constants/app_colors.dart';
+import 'package:travel_app_flutter/cubit/app_cubits.dart';
 import 'package:travel_app_flutter/widgets/app_text.dart';
 import 'package:travel_app_flutter/widgets/responsive_button.dart';
 
@@ -81,7 +83,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         height: 40,
                       ),
                       ResponsiveButton(
-                        width: 80,
+                        width: 120,
+                        onPressed: () {
+                          BlocProvider.of<AppCubits>(context).getData();
+                          print('hellow');
+                        },
                       )
                     ],
                   ),
