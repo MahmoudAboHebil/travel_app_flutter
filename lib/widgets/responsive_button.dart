@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app_flutter/widgets/app_text.dart';
 
 class ResponsiveButton extends StatelessWidget {
-  VoidCallback? onPressed = () {};
+  VoidCallback? onPressed;
   double? width;
   bool isResponsive;
   ResponsiveButton({this.width, this.isResponsive = false, this.onPressed});
@@ -21,7 +21,9 @@ class ResponsiveButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10))),
               backgroundColor: MaterialStatePropertyAll(AppColors.mainColor)),
           onPressed: () {
-            onPressed!();
+            if (onPressed != null) {
+              onPressed!();
+            }
           },
           child: Row(
             mainAxisAlignment: isResponsive

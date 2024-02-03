@@ -48,8 +48,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(0.5),
-                              borderRadius: BorderRadius.circular(10)),
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  'assets/images/profileImag.jpeg',
+                                ),
+                                fit: BoxFit.cover),
+                          ),
                         )
                       ],
                     ),
@@ -101,19 +107,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         scrollDirection: Axis.horizontal,
                         itemCount: info.length,
                         itemBuilder: (_, index) {
-                          return Container(
-                            margin: EdgeInsets.only(right: 15, top: 10),
-                            height: 300,
-                            width: 200,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.grey.withOpacity(0.3),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    "http://mark.bslmeiyu.com/uploads/" +
-                                        info[index].img,
-                                  ),
-                                  fit: BoxFit.cover),
+                          return GestureDetector(
+                            onTap: () {
+                              BlocProvider.of<AppCubits>(context)
+                                  .detailPage(info[index]);
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(right: 15, top: 10),
+                              height: 300,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.grey.withOpacity(0.3),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      "http://mark.bslmeiyu.com/uploads/" +
+                                          info[index].img,
+                                    ),
+                                    fit: BoxFit.cover),
+                              ),
                             ),
                           );
                         },
